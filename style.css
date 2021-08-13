@@ -1,28 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Loop&display=swap');
-
 body{
-   height: 95vh;
-   width: 95;
-   display: flex; 
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
-   color: black;
-   font-family: 'Zen Loop', cursive;
-   font-size: 20px;
-}
-
-#divMenu{
-   float: left;
-   text-align: center;
-   margin-right: 20px;
-   width: 150px;
-   margin-bottom: 20px;
-   background-color: whitesmoke;
-}
-#divCanvas{
-   margin: 20px;
-}
-#divMenu p{
-   text-align: center;
+    height: 95vh;
+    width: 95vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color:white;
+    color: rgb(52, 165, 52);
 }
