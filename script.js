@@ -2,6 +2,9 @@ let canvas = document.getElementById("snake"); //criar elemento que irá rodar o
 let context = canvas.getContext("2d"); //....
 let box = 32;
 let snake = []; //criar cobrinha como lista, já que ela vai ser uma série de coordenadas, que quando pintadas, criam os quadradinhos
+
+var bestScore = localStorage.getItem('bestScore') || 1;
+
 snake[0] ={
     x: 8 * box,
     y: 8 * box
@@ -32,7 +35,23 @@ function drawFood (){
 //quando um evento acontece, detecta e chama uma função
 document.addEventListener('keydown', update);
 
+function set_best_score(value){    
+    if (value > bestScore) {
+        bestScore = value;
+        // Store the best score in localStorage
+        localStorage.setItem('bestScore', bestScore); 
+
+        var scoreElement = document.getElementById("best-score");
+        scoreElement.textContent = 'Best Score: ' + value;
+    }
+}
+
 function update(event){
+    var scoreElement = document.getElementById("score");
+    scoreElement.textContent = 'Score: ' + snake.length;
+
+    set_best_score(snake.length);
+
     if(event.keyCode == 37 && direction != 'right') direction = 'left';
     if(event.keyCode == 38 && direction != 'down') direction = 'up';
     if(event.keyCode == 39 && direction != 'left') direction = 'right';
@@ -67,7 +86,8 @@ function iniciarJogo(){
 
     if(snakeX != food.x || snakeY != food.y){
         snake.pop(); //pop tira o último elemento da lista
-    }else{
+    }
+    else {
         food.x = Math.floor(Math.random() * 15 +1) * box;
         food.y = Math.floor(Math.random() * 15 +1) * box;
     }
